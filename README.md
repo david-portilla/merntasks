@@ -1,2 +1,3 @@
-# merntasks
+# MERNTasks
+
 Tasks manager with MERN
