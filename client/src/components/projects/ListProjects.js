@@ -1,11 +1,19 @@
 import React from "react";
+import Project from "./Project";
 
 const ListProjects = () => {
+  const projects = [
+    { name: "Ecommerce" },
+    { name: "Learnig react" },
+    { name: "Creating new portfolio" },
+  ];
+
   return (
-    <div>
-      ListProjects
-      <p>test</p>
-    </div>
+    <ul className="listado-proyectos">
+      {projects.map((pp, idx) => (
+        <Project key={idx} project={pp} />
+      ))}
+    </ul>
   );
 };
 
