@@ -22,7 +22,7 @@ const TasksList = () => {
       </ul>
 
       <button type="button" className="btn btn-eliminar">
-        Remove project &times;
+        Remove this project &times;
       </button>
     </>
   );
