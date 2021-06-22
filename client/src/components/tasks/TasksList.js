@@ -14,7 +14,7 @@ const TasksList = () => {
       <ul className="listado-tareas">
         {tasks.length === 0 ? (
           <li className="tarea">
-            <p> There are not task</p>{" "}
+            <p> There are not task</p>
           </li>
         ) : (
           tasks.map((task, idx) => <Task key={idx} task={task} />)
