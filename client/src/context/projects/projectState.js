@@ -1,22 +1,31 @@
 import { useReducer } from "react";
-import { FORM_PROJECT } from "../../types";
+import { FORM_PROJECT, GET_PROJECTS } from "../../types";
 import projectContext from "./projectContext";
 import projectReducer from "./projectReducer";
 
 const ProjectState = (props) => {
+  const projects = [
+    { id: 1, name: "Ecommerce state" },
+    { id: 2, name: "Learnig react" },
+    { id: 3, name: "Creating new portfolio" },
+    { id: 4, name: "MERN" },
+  ];
+
   const initialState = {
     formProject: false,
-    projects: [
-      { id: 1, name: "Ecommerce state" },
-      { id: 2, name: "Learnig react" },
-      { id: 3, name: "Creating new portfolio" },
-      { id: 4, name: "MERN" },
-    ],
+    projects: [],
   };
   const [state, dispatch] = useReducer(projectReducer, initialState);
   const showFormFn = () => {
     dispatch({
       type: FORM_PROJECT,
+    });
+  };
+
+  const getProjectsFN = () => {
+    dispatch({
+      type: GET_PROJECTS,
+      payload: projects,
     });
   };
 
@@ -26,6 +35,7 @@ const ProjectState = (props) => {
         formProject: state.formProject,
         projects: state.projects,
         showFormFn,
+        getProjectsFN,
       }}
     >
       {props.children}
