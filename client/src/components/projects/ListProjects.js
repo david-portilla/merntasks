@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
+import projectContext from "../../context/projects/projectContext";
 import Project from "./Project";
 
 const ListProjects = () => {
-  const projects = [
-    { name: "Ecommerce" },
-    { name: "Learnig react" },
-    { name: "Creating new portfolio" },
-  ];
+  // getting projects form initial state
+  const projectsContext = useContext(projectContext);
+  const { projects } = projectsContext;
+
+  if (projects.length === 0) return "You don't have any current projects";
 
   return (
     <ul className="listado-proyectos">
-      {projects.map((pp, idx) => (
-        <Project key={idx} project={pp} />
+      {projects.map((project) => (
+        <Project key={project.id} project={project} />
       ))}
     </ul>
   );
