@@ -9,7 +9,8 @@ const ListProjects = () => {
 
   useEffect(() => {
     getProjectsFN();
-  }, [getProjectsFN]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (projects.length === 0) return "You don't have any current projects";
 
