@@ -5,7 +5,8 @@ import projectContext from "../../context/projects/projectContext";
 const TasksList = () => {
   const projectsContext = useContext(projectContext);
   const { selectedProject } = projectsContext;
-  if(!selectedProject) return <h2>Select a project from sidebar</h2>
+
+  if (!selectedProject) return <h2>Select a project from sidebar</h2>;
   const [currentProject] = selectedProject;
 
   const tasks = [
