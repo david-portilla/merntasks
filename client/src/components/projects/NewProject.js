@@ -3,7 +3,8 @@ import projectContext from "../../context/projects/projectContext";
 
 const NewProject = () => {
   const projectsContext = useContext(projectContext);
-  const { formProject, showFormFn, addProjectsFN } = projectsContext;
+  const { formProject, errorForm, showFormFn, addProjectsFN, showErrorFN } =
+    projectsContext;
 
   const [project, setProject] = useState({
     name: "",
@@ -21,12 +22,15 @@ const NewProject = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (name === "") return;
+    if (name === "") {
+      showErrorFN();
+      return
+    }
 
     addProjectsFN(project);
     setProject({
-      name: ''
-    })
+      name: "",
+    });
   };
 
   const handleClick = () => {
@@ -59,6 +63,10 @@ const NewProject = () => {
             value="Add project"
           />
         </form>
+      ) : null}
+
+      {errorForm ? (
+        <p className="mensaje error">Project name is mandatory</p>
       ) : null}
     </>
   );
