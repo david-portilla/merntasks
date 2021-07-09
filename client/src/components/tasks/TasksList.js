@@ -4,7 +4,7 @@ import projectContext from "../../context/projects/projectContext";
 
 const TasksList = () => {
   const projectsContext = useContext(projectContext);
-  const { selectedProject } = projectsContext;
+  const { selectedProject, removeProjectFN } = projectsContext;
 
   if (!selectedProject) return <h2>Select a project from sidebar</h2>;
   const [currentProject] = selectedProject;
@@ -15,6 +15,10 @@ const TasksList = () => {
     { name: "Choose pay platform", status: true },
     { name: "Choose carrier", status: false },
   ];
+
+  const removeProject = () => {
+    removeProjectFN(currentProject.id);
+  };
 
   return (
     <>
@@ -29,7 +33,11 @@ const TasksList = () => {
         )}
       </ul>
 
-      <button type="button" className="btn btn-eliminar">
+      <button
+        type="button"
+        className="btn btn-eliminar"
+        onClick={removeProject}
+      >
         Remove this project &times;
       </button>
     </>

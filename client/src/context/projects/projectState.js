@@ -7,6 +7,7 @@ import {
   ADD_PROJECT,
   VALIDATE_FORM,
   CURRENT_PROJECT,
+  REMOVE_PROJECT,
 } from "../../types";
 import projectContext from "./projectContext";
 import projectReducer from "./projectReducer";
@@ -60,6 +61,13 @@ const ProjectState = (props) => {
     });
   };
 
+  const removeProjectFN = (projectId) => {
+    dispatch({
+      type: REMOVE_PROJECT,
+      payload: projectId,
+    });
+  };
+
   return (
     <projectContext.Provider
       value={{
@@ -72,6 +80,7 @@ const ProjectState = (props) => {
         addProjectsFN,
         showErrorFN,
         currentProjectFN,
+        removeProjectFN,
       }}
     >
       {props.children}
