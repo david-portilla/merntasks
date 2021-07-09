@@ -4,7 +4,6 @@ const TaskForm = () => {
   return (
     <div className="formulario">
       <form>
-        add form here
         <div className="contenedor-input">
           <input
             type="text"

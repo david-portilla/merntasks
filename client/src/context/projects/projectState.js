@@ -6,6 +6,7 @@ import {
   GET_PROJECTS,
   ADD_PROJECT,
   VALIDATE_FORM,
+  CURRENT_PROJECT,
 } from "../../types";
 import projectContext from "./projectContext";
 import projectReducer from "./projectReducer";
@@ -22,6 +23,7 @@ const ProjectState = (props) => {
     formProject: false,
     projects: [],
     errorForm: false,
+    selectedProject: null,
   };
   const [state, dispatch] = useReducer(projectReducer, initialState);
   const showFormFn = () => {
@@ -51,16 +53,25 @@ const ProjectState = (props) => {
     });
   };
 
+  const currentProjectFN = (projectId) => {
+    dispatch({
+      type: CURRENT_PROJECT,
+      payload: projectId,
+    });
+  };
+
   return (
     <projectContext.Provider
       value={{
         formProject: state.formProject,
         projects: state.projects,
         errorForm: state.errorForm,
+        selectedProject: state.selectedProject,
         showFormFn,
         getProjectsFN,
         addProjectsFN,
         showErrorFN,
+        currentProjectFN,
       }}
     >
       {props.children}

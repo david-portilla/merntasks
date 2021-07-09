@@ -3,6 +3,7 @@ import {
   GET_PROJECTS,
   ADD_PROJECT,
   VALIDATE_FORM,
+  CURRENT_PROJECT,
 } from "../../types";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -23,12 +24,19 @@ export default (state, action) => {
         ...state,
         projects: [...state.projects, action.payload],
         formProject: false,
-        errorForm: false
+        errorForm: false,
       };
     case VALIDATE_FORM:
       return {
         ...state,
-        errorForm: true
+        errorForm: true,
+      };
+    case CURRENT_PROJECT:
+      return {
+        ...state,
+        selectedProject: state.projects.filter(
+          (project) => project.id === action.payload
+        ),
       };
     default:
       return state;
