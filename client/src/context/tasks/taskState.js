@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import taskContext from "./taskContext";
 import taskReducer from "./taskReducer";
-import { TASKS_PROJECT } from "../../types";
+import { TASKS_PROJECT, ADD_TASK } from "../../types";
 
 const TaskState = (props) => {
   const initialState = {
@@ -20,10 +20,19 @@ const TaskState = (props) => {
 
   const [state, dispatch] = useReducer(taskReducer, initialState);
 
+  // Getting task from clicked project
   const getTasks = (projectId) => {
     dispatch({
       type: TASKS_PROJECT,
       payload: projectId,
+    });
+  };
+
+  // Add new task to selected project
+  const addTask = (task) => {
+    dispatch({
+      type: ADD_TASK,
+      payload: task,
     });
   };
 
@@ -33,6 +42,7 @@ const TaskState = (props) => {
         tasks: state.tasks,
         projectTasks: state.projectTasks,
         getTasks,
+        addTask,
       }}
     >
       {props.children}
