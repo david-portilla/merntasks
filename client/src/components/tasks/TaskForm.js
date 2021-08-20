@@ -7,10 +7,10 @@ const TaskForm = () => {
   const { selectedProject } = projectsContext;
 
   const tasksContext = useContext(taskContext);
-  const { addTask } = tasksContext;
+  const { addTask, validateTask, taskError, getTasks } = tasksContext;
 
   // Form state
-  const [task, setTask] = useState({
+  const [task, setTaskName] = useState({
     name: "",
   });
   const { name } = task;
@@ -20,7 +20,7 @@ const TaskForm = () => {
   const [currentProject] = selectedProject;
 
   const handleChange = (e) => {
-    setTask({
+    setTaskName({
       ...task,
       [e.target.name]: e.target.value,
     });
@@ -28,9 +28,20 @@ const TaskForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    if (name.trim() === "") {
+      validateTask();
+      return;
+    }
     task.projectId = currentProject.id;
     task.status = false;
     addTask(task);
+
+    getTasks(task.projectId);
+
+    setTaskName({
+      name: "",
+    });
   };
 
   return (
@@ -54,6 +65,9 @@ const TaskForm = () => {
           />
         </div>
       </form>
+      {taskError ? (
+        <p className="mensaje error">Task name is mandatory</p>
+      ) : null}
     </div>
   );
 };
