@@ -1,19 +1,24 @@
 import { useReducer } from "react";
 import taskContext from "./taskContext";
 import taskReducer from "./taskReducer";
-import { TASKS_PROJECT, ADD_TASK, VALIDATE_TASK } from "../../types";
+import {
+  TASKS_PROJECT,
+  ADD_TASK,
+  VALIDATE_TASK,
+  REMOVE_TASK,
+} from "../../types";
 
 const TaskState = (props) => {
   const initialState = {
     tasks: [
-      { name: "Choose platform", status: true, projectId: 1 },
-      { name: "Select colors", status: false, projectId: 2 },
-      { name: "Choose pay platform", status: true, projectId: 3 },
-      { name: "Choose carrier", status: false, projectId: 4 },
-      { name: "Choose platform", status: true, projectId: 4 },
-      { name: "Select colors", status: false, projectId: 3 },
-      { name: "Choose pay platform", status: true, projectId: 2 },
-      { name: "Choose carrier", status: false, projectId: 1 },
+      { id: 1, name: "Choose platform", status: true, projectId: 1 },
+      { id: 2, name: "Select colors", status: false, projectId: 2 },
+      { id: 3, name: "Choose pay platform", status: true, projectId: 3 },
+      { id: 4, name: "Choose carrier", status: false, projectId: 4 },
+      { id: 5, name: "Choose platform", status: true, projectId: 4 },
+      { id: 6, name: "Select colors", status: false, projectId: 3 },
+      { id: 7, name: "Choose pay platform", status: true, projectId: 2 },
+      { id: 8, name: "Choose carrier", status: false, projectId: 1 },
     ],
     projectTasks: null,
     taskError: false,
@@ -44,6 +49,14 @@ const TaskState = (props) => {
     });
   };
 
+  // Remove task by ID
+  const removeTask = (id) => {
+    dispatch({
+      type: REMOVE_TASK,
+      payload: id,
+    });
+  };
+
   return (
     <taskContext.Provider
       value={{
@@ -52,7 +65,8 @@ const TaskState = (props) => {
         taskError: state.taskError,
         getTasks,
         addTask,
-        validateTask
+        validateTask,
+        removeTask,
       }}
     >
       {props.children}

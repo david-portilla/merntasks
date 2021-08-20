@@ -26,7 +26,7 @@ const TasksList = () => {
             <p> There are not task</p>
           </li>
         ) : (
-          projectTasks.map((task, idx) => <Task key={idx} task={task} />)
+          projectTasks.map((task) => <Task key={task.id} task={task} />)
         )}
       </ul>
 

@@ -1,4 +1,9 @@
-import { TASKS_PROJECT, ADD_TASK, VALIDATE_TASK } from "../../types";
+import {
+  TASKS_PROJECT,
+  ADD_TASK,
+  VALIDATE_TASK,
+  REMOVE_TASK,
+} from "../../types";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state, action) => {
@@ -22,6 +27,12 @@ export default (state, action) => {
       return {
         ...state,
         taskError: true,
+      };
+
+    case REMOVE_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.filter((task) => task.id !== action.payload),
       };
 
     default:
