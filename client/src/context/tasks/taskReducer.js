@@ -3,6 +3,7 @@ import {
   ADD_TASK,
   VALIDATE_TASK,
   REMOVE_TASK,
+  TASK_STATUS,
 } from "../../types";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -33,6 +34,14 @@ export default (state, action) => {
       return {
         ...state,
         tasks: state.tasks.filter((task) => task.id !== action.payload),
+      };
+
+    case TASK_STATUS:
+      return {
+        ...state,
+        tasks: state.tasks.map((task) =>
+          task.id === action.payload.id ? action.payload : task
+        ),
       };
 
     default:

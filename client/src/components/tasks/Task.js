@@ -7,7 +7,7 @@ const Task = ({ task }) => {
   const { selectedProject } = projectsContext;
 
   const tasksContext = useContext(taskContext);
-  const { removeTask, getTasks } = tasksContext;
+  const { removeTask, getTasks, updateTaskStatus } = tasksContext;
 
   const [currentProyect] = selectedProject;
 
@@ -16,17 +16,34 @@ const Task = ({ task }) => {
     getTasks(currentProyect.id);
   };
 
+  const updateTaskFn = (task) => {
+    if (task.status) {
+      task.status = false;
+    } else {
+      task.status = true;
+    }
+    updateTaskStatus(task);
+  };
+
   return (
     <li className="tarea sombra" key={task.name}>
       <p>{task.name}</p>
 
       <div className="estado">
         {task.status ? (
-          <button type="button" className="completo">
+          <button
+            type="button"
+            className="completo"
+            onClick={() => updateTaskFn(task)}
+          >
             Completed
           </button>
         ) : (
-          <button type="button" className="incompleto">
+          <button
+            type="button"
+            className="incompleto"
+            onClick={() => updateTaskFn(task)}
+          >
             Incompleted
           </button>
         )}
