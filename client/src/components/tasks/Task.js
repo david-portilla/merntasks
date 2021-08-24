@@ -7,7 +7,8 @@ const Task = ({ task }) => {
   const { selectedProject } = projectsContext;
 
   const tasksContext = useContext(taskContext);
-  const { removeTask, getTasks, updateTaskStatus } = tasksContext;
+  const { removeTask, getTasks, updateTaskStatus, getCurrentTask } =
+    tasksContext;
 
   const [currentProyect] = selectedProject;
 
@@ -23,6 +24,10 @@ const Task = ({ task }) => {
       task.status = true;
     }
     updateTaskStatus(task);
+  };
+
+  const selectTaskFn = (task) => {
+    getCurrentTask(task);
   };
 
   return (
@@ -50,7 +55,11 @@ const Task = ({ task }) => {
       </div>
 
       <div className="acciones">
-        <button type="button" className="btn btn-primario">
+        <button
+          type="button"
+          className="btn btn-primario"
+          onClick={() => selectTaskFn(task)}
+        >
           Edit task
         </button>
         <button

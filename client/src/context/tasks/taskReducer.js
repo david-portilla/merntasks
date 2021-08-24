@@ -4,6 +4,7 @@ import {
   VALIDATE_TASK,
   REMOVE_TASK,
   TASK_STATUS,
+  CURRENT_TASK
 } from "../../types";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -42,6 +43,12 @@ export default (state, action) => {
         tasks: state.tasks.map((task) =>
           task.id === action.payload.id ? action.payload : task
         ),
+      };
+
+    case CURRENT_TASK:
+      return {
+        ...state,
+        selectedTask: action.payload
       };
 
     default:

@@ -10,3 +10,4 @@ export const ADD_TASK = "ADD_TASK";
 export const VALIDATE_TASK = "VALIDATE_TASK";
 export const REMOVE_TASK = "REMOVE_TASK";
 export const TASK_STATUS = "TASK_STATUS";
+export const CURRENT_TASK = "CURRENT_TASK";
