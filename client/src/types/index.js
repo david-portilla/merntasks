@@ -11,3 +11,5 @@ export const VALIDATE_TASK = "VALIDATE_TASK";
 export const REMOVE_TASK = "REMOVE_TASK";
 export const TASK_STATUS = "TASK_STATUS";
 export const CURRENT_TASK = "CURRENT_TASK";
+export const UPDATE_TASK = "UPDATE_TASK";
+export const RESET_TASK = "RESET_TASK";

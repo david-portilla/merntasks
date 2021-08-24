@@ -1,4 +1,5 @@
 import { useReducer } from "react";
+import { v4 as uuidv4 } from "uuid";
 import taskContext from "./taskContext";
 import taskReducer from "./taskReducer";
 import {
@@ -8,6 +9,8 @@ import {
   REMOVE_TASK,
   TASK_STATUS,
   CURRENT_TASK,
+  UPDATE_TASK,
+  RESET_TASK,
 } from "../../types";
 
 const TaskState = (props) => {
@@ -39,6 +42,7 @@ const TaskState = (props) => {
 
   // Add new task to selected project
   const addTask = (task) => {
+    task.id = uuidv4();
     dispatch({
       type: ADD_TASK,
       payload: task,
@@ -76,6 +80,21 @@ const TaskState = (props) => {
     });
   };
 
+  // Edit a task
+  const updateTask = (task) => {
+    dispatch({
+      type: UPDATE_TASK,
+      payload: task,
+    });
+  };
+
+  // Remove previous selected task
+  const cleanTask = () => {
+    dispatch({
+      type: RESET_TASK,
+    });
+  };
+
   return (
     <taskContext.Provider
       value={{
@@ -88,7 +107,9 @@ const TaskState = (props) => {
         validateTask,
         removeTask,
         updateTaskStatus,
-        getCurrentTask
+        getCurrentTask,
+        updateTask,
+        cleanTask,
       }}
     >
       {props.children}
